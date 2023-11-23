@@ -23,15 +23,19 @@ fetch("https://mocki.io/v1/765b2daf-41d5-4e94-a0d5-abd918f57b8f")
                 this.saldo = _saldo;
             }
             Abbigliamento.prototype.getSaldoCapo = function () {
-                return (this.prezzoivainclusa - this.saldo) / 100;
+                var saldo = this.prezzoivainclusa * (this.saldo / 100);
+                return saldo.toFixed(2) + " €";
             };
             Abbigliamento.prototype.getAcquistoCapo = function () {
-                return this.prezzoivainclusa - this.getSaldoCapo();
+                var prezzoProdotto = this.prezzoivainclusa - parseFloat(this.getSaldoCapo());
+                return prezzoProdotto.toFixed(2) + " €";
             };
             return Abbigliamento;
         }());
         var capoAbbigliamento = new Abbigliamento(element.id, element.codprod, element.collezione, element.capo, element.modello, element.quantita, element.colore, element.prezzoivaesclusa, element.prezzoivainclusa, element.disponibile, element.saldo);
-        console.log("Capo d'abbigliamento con id: ".concat(element.id, " ") + element);
+        console.log("Capo d'Abbigliamento ".concat(element.id, ":"), capoAbbigliamento);
+        console.log("Saldo:", capoAbbigliamento.getSaldoCapo());
+        console.log("Totale capo:", capoAbbigliamento.getAcquistoCapo());
     });
 })
     .catch(function (err) { return console.log(err); });

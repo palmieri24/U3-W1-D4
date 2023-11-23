@@ -46,12 +46,15 @@ fetch("https://mocki.io/v1/765b2daf-41d5-4e94-a0d5-abd918f57b8f")
           this.disponibile = _disponibile;
           this.saldo = _saldo;
         }
-        getSaldoCapo() {
-          return (this.prezzoivainclusa - this.saldo) / 100;
+        getSaldoCapo(): string {
+          let saldo = this.prezzoivainclusa * (this.saldo / 100);
+          return saldo.toFixed(2) + " €";
         }
 
-        getAcquistoCapo() {
-          return this.prezzoivainclusa - this.getSaldoCapo();
+        getAcquistoCapo(): string {
+          let prezzoProdotto =
+            this.prezzoivainclusa - parseFloat(this.getSaldoCapo());
+          return prezzoProdotto.toFixed(2) + " €";
         }
       }
 
@@ -68,9 +71,9 @@ fetch("https://mocki.io/v1/765b2daf-41d5-4e94-a0d5-abd918f57b8f")
         element.disponibile,
         element.saldo
       );
-      console.log(`Capo d'Abbigliamento ${element.id}:` + capoAbbigliamento);
-      console.log("Saldo:" + capoAbbigliamento.getSaldoCapo());
-      console.log("Totale capo:" + capoAbbigliamento.getAcquistoCapo());
+      console.log(`Capo d'Abbigliamento ${element.id}:`, capoAbbigliamento);
+      console.log(`Saldo:`, capoAbbigliamento.getSaldoCapo());
+      console.log(`Totale capo:`, capoAbbigliamento.getAcquistoCapo());
     });
   })
   .catch((err) => console.log(err));
