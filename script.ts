@@ -16,8 +16,8 @@ fetch("https://mocki.io/v1/765b2daf-41d5-4e94-a0d5-abd918f57b8f")
         modello: number;
         quantita: number;
         colore: string;
-        prezzoivaesclusa: number;
-        prezzoivainclusa: number;
+        prezzoIvaEsclusa: number;
+        prezzoIvaInclusa: number;
         disponibile: string;
         saldo: number;
 
@@ -29,8 +29,8 @@ fetch("https://mocki.io/v1/765b2daf-41d5-4e94-a0d5-abd918f57b8f")
           _modello: number,
           _quantita: number,
           _colore: string,
-          _prezzoivaesclusa: number,
-          _prezzoivainclusa: number,
+          _prezzoIvaEsclusa: number,
+          _prezzoIvaInclusa: number,
           _disponibile: string,
           _saldo: number
         ) {
@@ -41,19 +41,19 @@ fetch("https://mocki.io/v1/765b2daf-41d5-4e94-a0d5-abd918f57b8f")
           this.modello = _modello;
           this.quantita = _quantita;
           this.colore = _colore;
-          this.prezzoivaesclusa = _prezzoivaesclusa;
-          this.prezzoivainclusa = _prezzoivainclusa;
+          this.prezzoIvaEsclusa = _prezzoIvaEsclusa;
+          this.prezzoIvaInclusa = _prezzoIvaInclusa;
           this.disponibile = _disponibile;
           this.saldo = _saldo;
         }
         getSaldoCapo(): string {
-          let saldo = this.prezzoivainclusa * (this.saldo / 100);
+          let saldo = this.prezzoIvaInclusa * (this.saldo / 100);
           return saldo.toFixed(2) + " €";
         }
 
         getAcquistoCapo(): string {
           let prezzoProdotto =
-            this.prezzoivainclusa - parseFloat(this.getSaldoCapo());
+            this.prezzoIvaInclusa - parseFloat(this.getSaldoCapo());
           return prezzoProdotto.toFixed(2) + " €";
         }
       }
