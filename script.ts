@@ -69,6 +69,7 @@ fetch("https://mocki.io/v1/765b2daf-41d5-4e94-a0d5-abd918f57b8f")
         element.saldo
       );
       console.log(`Capo d'Abbigliamento ${element.id}:` + capoAbbigliamento);
+      console.log("Saldo:" + capoAbbigliamento.getSaldoCapo());
       console.log("Totale capo:" + capoAbbigliamento.getAcquistoCapo());
     });
   })
